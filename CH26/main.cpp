@@ -32,7 +32,7 @@ int main(int argc, char** argv)
 		{
 			if (Data[j] < Data[i])
 			{
-				BestGrade--;
+				BestGrade--; // 바로 출력해줘도 된다. 
 			}
 		}
 
