@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 		idx = i;
 		for(int j=i+1; j<n; j++)
 		{
-			if(data[j] < data[idx])
+			if(data[j] > data[idx])
 			{
 				idx = j;	
 			}	
@@ -33,9 +33,9 @@ int main(int argc, char** argv)
 		data[idx] = temp;	
 	}
 	
-	for(int i=data.size(); i>0; i--)
+	for(int i=1; i<data.size(); i++)
 	{
-		if(data[i-1] > data[i]) 
+		if(data[i-1] > data[i] ) 
 		{
 			cnt ++;
 		}
@@ -46,6 +46,5 @@ int main(int argc, char** argv)
 			break;
 		}
 	}
-	
 	return 0;
 }
