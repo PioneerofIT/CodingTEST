@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-
+//선택 정렬
 int main(int argc, char** argv) 
 {
 	
