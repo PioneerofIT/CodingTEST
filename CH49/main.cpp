@@ -3,56 +3,56 @@
 #include <algorithm>
 using namespace std;
 
-int main(int argc, char** argv) 
+int main(int argc, char** argv)
 {
-	int a[10][10] = {0};
-	int n, col=0, row=0;
+	int a[11][11] = { 0 };
+	int n, col = 1, row = 1;
 	cin >> n;
-	vector<int> front(n);
-	vector<int> rightward(n);
-	
-	for(int i=0; i<front.size(); i++)
+	vector<int> front(n + 1);
+	vector<int> rightward(n + 1);
+
+	for (int i = 1; i <= n; i++)
 	{
 		cin >> front[i];
 	}
-	
-	for(int i=(rightward.size()-1); i>=0; i-- )
+
+	for (int i = n; i >= 1; i--)
 	{
 		cin >> rightward[i];
 	}
-	
+
 	//col fix
-	for(col=0; col<n; col++)
+	for (col = 1; col <= n; col++)
 	{
-		for(row = (n-1); row>=0; row --)
+		for (row = n; row >= 1; row--)
 		{
 			a[row][col] = front[col];
 		}
 	}
-	
+
 	//row fix
-	for(row=0; row<n; row++)
+	for (row = 1; row <= n; row++)
 	{
-		for(col=0; col<n; col++)
+		for (col = 1; col <= n; col++)
 		{
-			if( a[row][col] > rightward[row] )
+			if (a[row][col] > rightward[row])
 			{
-				a[row][col] = rightward[row];	
+				a[row][col] = rightward[row];
 			}
 		}
 	}
-	
-	int cnt = 0;
-	
-	for(col=0; col<n; col++)
+
+	int sum = 0;
+
+	for (col = 1; col <= n; col++)
 	{
-		for(row = 0; row <n; row --)
+		for (row = 1; row <= n; row++)
 		{
-			cnt += a[row][col];
+			sum += a[row][col];
 		}
 	}
-	
-	cout << cnt ;
-	
+
+	cout << sum;
+
 	return 0;
 }

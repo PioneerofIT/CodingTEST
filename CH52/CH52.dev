@@ -1,6 +1,6 @@
 [Project]
-FileName=CH50.dev
-Name=CH50
+FileName=CH52.dev
+Name=CH52
 Type=1
 Ver=2
 ObjFiles=
@@ -28,11 +28,7 @@ Folders=
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
-<<<<<<< HEAD
 CompilerSettings=00000000g0000000000000000
-=======
-CompilerSettings=0000000000000000000000000
->>>>>>> c13fb275e0d95bda3b59e0d772890bc0f20c575b
 UnitCount=1
 
 [VersionInfo]
