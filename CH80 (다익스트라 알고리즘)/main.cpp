@@ -3,7 +3,7 @@
 #include <queue>
 using namespace std;
 
-int distance[21] = {21470000}; 
+
 int ch[21];
 
 struct Edge
@@ -26,10 +26,13 @@ struct Edge
 int main(int argc, char** argv) 
 {
 	int n,m;
-	vector< pair<int,int>> Node[21];
+	vector<pair<int,int>> Node[21];
 	priority_queue<Edge> pQ;
 	
+	
 	cin >> n >> m;
+	
+	vector<int> distance(n+1, 21700000);
 	for(int i=0; i<m; i++)
 	{
 		int x, y, z;
@@ -40,44 +43,30 @@ int main(int argc, char** argv)
 	}
 	
 	pQ.push(Edge(1,0));
-	distance[1] = 0;
-	ch[1]=1;	
+	distance[1] = 0;	
 	while(!pQ.empty())
 	{
 		
-		for(int i=1; i<=n; i++ )
+		int nowNode = pQ.top().node;
+		int nowPrice = pQ.top().price;
+		pQ.pop();
+		
+		if(nowPrice > distance[nowNode] ) continue;
+		
+		for(int i=0; i<Node[nowNode].size(); i++)
 		{
-			if(min < distance[i])
+			int nextNode = Node[nowNode][i].first;
+			int nextPrice = nowPrice + Node[nowNode][i].second;
+			
+			if(distance[nextNode] > nextPrice )
 			{
-				min = i;
+				distance[nextNode] = nextPrice;
+				pQ.push(Edge(nextNode,nextPrice));
 			}
 		}
 		
-		if(ch[min] == 0)
-		{
-			for(int i=0; i<Node[min].size(); i++)
-			{
-				
-				if( res < distance[node]+distance[Node[min].frist] ) //현재 자신의 노드와 도착노드의 비용을 더해야함. 
-				{
-					if(ch[min] == 0)
-					{
-						distance[Node[node].frist] 	= res;
-						ch[min] = 1;
-					}
-					
-				}	
-				
-				
-				pQ.push(Node[min].frist, Node[min].second);
-			}			
-		}
+	}			
 		
-	
-					
-	}
-	
-	
 
 	
 	return 0;
