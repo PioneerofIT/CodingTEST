@@ -10,7 +10,7 @@ vector<int> operNum;
 
 void DFS(int L, int sum)
 {
-	if(L == n)
+	if(L == n+1)
 	{
 		if(sum < minRes )
 		{
@@ -31,25 +31,25 @@ void DFS(int L, int sum)
 				if( i == 1)
 				{
 					operNum[i] --;
-					DFS(L+1, arrayNum[i]+sum );
+					DFS(L+1, arrayNum[L]+sum );
 					operNum[i] ++;		
 				}
 				else if( i == 2)
 				{
 					operNum[i] --;
-					DFS(L+1, arrayNum[i]-sum );
+					DFS(L+1, arrayNum[L]-sum );
 					operNum[i] ++;						
 				}
 				else if( i == 3)
 				{
 					operNum[i] --;
-					DFS(L+1, arrayNum[i]*sum );
+					DFS(L+1, arrayNum[L]*sum );
 					operNum[i] ++;					
 				}
 				else if( i == 4)
 				{
 					operNum[i] --;
-					DFS(L+1, arrayNum[i]/sum );
+					DFS(L+1, sum /arrayNum[L] );
 					operNum[i] ++;						
 				}
 					
@@ -74,14 +74,14 @@ int main(int argc, char** argv)
 		arrayNum.push_back(x);
 	}
 	
-	for(int i=0; i<n-1; i++)
+	for(int i=1; i<=4; i++)
 	{
 		int x;
 		cin >> x;
 		operNum.push_back(x);
 	}
 	
-	DFS(1,0);
+	DFS(2, arrayNum[1]); // 1번 인덱스 숫자는 sum에 선 누적 시키고 2번 인덱스 숫자부터 카운트 
 	
 	cout << maxRes << endl;
 	cout << minRes << endl;
