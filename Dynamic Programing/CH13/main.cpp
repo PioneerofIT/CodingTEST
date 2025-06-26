@@ -34,26 +34,35 @@ int main(int argc, char** argv)
 		}
 	}
 	
-	int score= 100;
 	for(int i=1; i<=n; i++)
 	{
 		for(int j=1; j<=n; j++)
 		{
-			res[i] = max(res[i], dy[i][j]);
+			cout << dy[i][j] << " ";
 		}
-		score = min(score, res[i]);
+		cout << endl;
 	}
-	int rescnt = 0;
-	for(int i=1; i<=n; i++)
-	{
-		if(score == res[i]) rescnt ++;
-	}
-	cout << score << " " << rescnt << endl;
 	
-	for(int i=1; i<=n; i++)
-	{
-		if(score == res[i]) cout << i <<" ";
-	}
+//	int score= 100;
+//	for(int i=1; i<=n; i++)
+//	{
+//		for(int j=1; j<=n; j++)
+//		{
+//			res[i] = max(res[i], dy[i][j]);
+//		}
+//		score = min(score, res[i]);
+//	}
+//	int rescnt = 0;
+//	for(int i=1; i<=n; i++)
+//	{
+//		if(score == res[i]) rescnt ++;
+//	}
+//	cout << score << " " << rescnt << endl;
+//	
+//	for(int i=1; i<=n; i++)
+//	{
+//		if(score == res[i]) cout << i <<" ";
+//	}
 	
 	
 	
