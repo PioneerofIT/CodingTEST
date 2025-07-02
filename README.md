@@ -1,1 +1,1 @@
-# CodingTEST
+# Algorithm
