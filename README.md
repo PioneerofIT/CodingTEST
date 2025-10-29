@@ -39,7 +39,7 @@ graph[1][0].second --> 5
 
 ## 🧮 [개념 정리] 우선순위 큐 (Priority Queue)
 ### 🔗 참고 링크
-[https://velog.io/@rjsgml3736/우선순위-큐-최대-힙-최소-힙](https://velog.io/@rjsgml3736/%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84-%ED%81%90-%EC%B5%9C%EB%8C%80-%ED%9E%99-%EC%B5%9C%EC%86%8C-%ED%9E%99)
+📎 [Velog 글 보러가기](https://velog.io/@rjsgml3736/%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84-%ED%81%90-%EC%B5%9C%EB%8C%80-%ED%9E%99-%EC%B5%9C%EB%8C%80-%ED%9E%99)
 
 71.
 /*“큐에 넣은 뒤 확인” 하면
