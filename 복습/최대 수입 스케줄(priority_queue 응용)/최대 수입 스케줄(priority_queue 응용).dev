@@ -1,6 +1,6 @@
 [Project]
-FileName=구조체를 이용한 vector정렬.dev
-Name=구조체를 이용한 vector정렬
+FileName=최대 수입 스케줄(priority_queue 응용).dev
+Name=최대 수입 스케줄(priority_queue 응용)
 Type=1
 Ver=2
 ObjFiles=
