@@ -39,7 +39,7 @@ graph[1][0].second --> 5
 
 ## 🧮 [개념 정리] 우선순위 큐 (Priority Queue)
 ### 🔗 참고 링크
-[https://velog.io/@rjsgml3736/우선순위-큐-최대-힙-최소-힙](https://velog.io/@rjsgml3736/%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84-%ED%81%90-%EC%B5%9C%EB%8C%80-%ED%9E%99-%EC%B5%9C%EC%86%8C-%ED%9E%99)
+[https://velog.io/@rjsgml3736/우선순위-큐-최대-힙-최대-힙]
 
 71.
 /*“큐에 넣은 뒤 확인” 하면
@@ -47,3 +47,10 @@ graph[1][0].second --> 5
 이미 다음 루프에서 꺼낼 때까지 기다려야 해요.
 즉, 한 번 더 불필요하게 큐에 넣었다가 pop하는 과정이 생김.
 → 결과는 같지만 비효율적 (한 스텝 늦어짐)*/
+
+
+75. 정리요망
+
+## 🧮 [개념 정리] DisJoint Set 자료구조 (Union&Find)
+### 🔗 참고 링크
+[https://velog.io/@rjsgml3736/Disjoint-Set-서로소-집합-Union-Find-정리]
