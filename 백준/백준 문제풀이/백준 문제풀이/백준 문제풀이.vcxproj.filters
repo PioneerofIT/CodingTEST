@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Samsung">
+      <UniqueIdentifier>{d2e91fdb-bc73-45b8-85b7-0eb311f4dea9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DFS와 BFS.cpp">
@@ -43,6 +46,24 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="9205_맥주 마시면서 걸어가기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="2667_단지번호붙이기.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="2606_바이러스.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="13460_구슬 탈출2.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
+    <ClCompile Include="14503_로봇 청소기.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
+    <ClCompile Include="2178_미로탐색.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="2573_빙산_2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
