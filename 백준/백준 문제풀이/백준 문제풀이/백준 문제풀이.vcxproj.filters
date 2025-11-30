@@ -66,5 +66,14 @@
     <ClCompile Include="2573_빙산_2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="3190_뱀.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
+    <ClCompile Include="13458_시험감독.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
+    <ClCompile Include="14499_주사위 굴리기.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
