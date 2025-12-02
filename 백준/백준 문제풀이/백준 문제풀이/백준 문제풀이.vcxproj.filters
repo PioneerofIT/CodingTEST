@@ -75,5 +75,8 @@
     <ClCompile Include="14499_주사위 굴리기.cpp">
       <Filter>소스 파일\Samsung</Filter>
     </ClCompile>
+    <ClCompile Include="13460_구슬 탈출2_Re.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
