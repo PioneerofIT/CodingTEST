@@ -3,6 +3,7 @@
 #include <queue>
 #include <algorithm>
 #include <climits>
+#include <cstring>
 
 using namespace std;
 
@@ -18,11 +19,8 @@ void DFS(int L, int x, int y, int sum)
 {
 	if (L == 4)
 	{
-		if (numMax < sum)
-		{
-			numMax = sum;
-			return;
-		}
+		numMax = max(numMax, sum);
+		return;
 
 	}
 	else
@@ -45,6 +43,34 @@ void DFS(int L, int x, int y, int sum)
 	}
 }
 
+void CheckT(int x, int y) // "っ" , "た", "で", "ぬ" 端滴
+{
+	int center = arrMap[x][y];
+
+	for (int i = 0; i < 4; i++)
+	{
+		int temp = center;
+		bool IsValid = true;
+		for (int j = 0; j < 4; j++)
+		{
+			if (i == j) continue;
+
+			int nextX = x + dx[j];
+			int nextY = y + dy[j];
+
+			if (nextX < 1 || nextX > n || nextY <1 || nextY > m)
+			{
+				IsValid = false;
+				break;
+			}
+			
+			temp += arrMap[nextX][nextY];
+
+		}
+		if (IsValid)
+			numMax = max(numMax, temp);
+	}
+}
 int main()
 {
 	ios_base::sync_with_stdio(false);
@@ -64,11 +90,11 @@ int main()
 	{
 		for (int j = 1; j <= m; j++)
 		{
-			if (!visited[i][j])
-			{
-				visited[i][j] = true;	
-				DFS(1, i, j, arrMap[i][j]);
-			}
+			memset(subVisited, false, sizeof(subVisited));
+			subVisited[i][j] = true;
+			DFS(1, i, j, arrMap[i][j]);
+			
+			CheckT(i, j);
 		}
 	}
 	
