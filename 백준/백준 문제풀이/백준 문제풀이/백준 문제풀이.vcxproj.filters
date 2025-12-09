@@ -84,5 +84,20 @@
     <ClCompile Include="14501_퇴사.cpp">
       <Filter>소스 파일\Samsung</Filter>
     </ClCompile>
+    <ClCompile Include="14502_연구소.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
+    <ClCompile Include="14888_연산자 끼워넣기.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
+    <ClCompile Include="14889_스타트와링크.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
+    <ClCompile Include="14890_경사로.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
+    <ClCompile Include="14891_톱니.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
