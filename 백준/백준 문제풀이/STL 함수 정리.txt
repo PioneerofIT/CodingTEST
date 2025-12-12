@@ -1,0 +1,27 @@
+vector<int> v;                // 빈 벡터
+vector<int> v(10);            // 0으로 초기화된 크기 10
+vector<int> v(10, 5);         // 5로 초기화된 크기 10
+vector<int> v = {1,2,3,4};    // 리스트 초기화
+
+resize(n) : n으로 크기 재설정 , int면 0으로 채워짐
+resize(5, 7); : 5로 크기 재설정 후 남은 size만큼 7로 채워짐
+
+
+컨테이너 복사
+int arr[100];
+copy(v.begin(), v.end(), arr);
+
+==================배열 함수=====================
+
+1. void* memset(void* ptr, int value, size_t num);
+
+매개변수	의미
+ptr	초기화할 메모리의 시작 주소 (배열, 구조체 등)
+value	1바이트 단위로 채울 값
+num	채울 바이트 수
+
+2. void* memcpy(void* dest, const void* src, size_t num);
+
+dest	복사될 메모리(목적지)
+src	복사할 원본
+num	복사할 바이트 수
