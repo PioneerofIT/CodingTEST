@@ -1,11 +1,13 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 using namespace std;
 
 int arrMap[31][11]; // 1-based
 int n, m, h;
 int dr[3] = { 0, 1, 0};
 int dc[3] = { 1, 0 , -1 };
+int minNum = INT_MAX;
 int GoDown(int startIdx)
 {
 	//Âß ³»·Á°¡¶ó..
@@ -33,7 +35,7 @@ bool CanPlace(int row, int col)
 	//¿ÞÂÊ¿¡ ÀÖ³ª?
 	if (col > 1 && arrMap[row][col - 1] == 1) return false;
 
-	if (col < n && arrMap[row][col + 1] == 1) return false;
+	if (col < n-1 && arrMap[row][col + 1] == 1) return false;
 
 	return true;
 }
@@ -52,13 +54,33 @@ bool CheckRoute()
 	return true;
 }
 
-void Dfs(int cnt)
+void Dfs(int cnt, int startRow)
 {
 	if (cnt > 3)
 	{
-		cout << -1;
 		return;
 	}
+
+
+	if (CheckRoute())
+	{
+		minNum = min(minNum, cnt);
+	}
+
+	for (int row = startRow; row <= h; row++)
+	{
+		for (int col = 1; col < n; col++)
+		{
+			if (CanPlace(row, col))
+			{
+				arrMap[row][col] = 1;
+				Dfs(cnt + 1, row);
+				arrMap[row][col] = 0;
+			}
+		}
+	}
+
+
 
 	
 }
@@ -79,7 +101,18 @@ int main()
 
 	}
 
-	cout << GoDown(1);
+	Dfs(0,1);
+
+	if (minNum == INT_MAX)
+	{
+		cout << -1;
+	}
+	else
+	{
+		cout << minNum;
+	}
+	
+
 
 	return 0;
 	
