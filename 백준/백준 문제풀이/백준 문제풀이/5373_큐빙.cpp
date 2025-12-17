@@ -15,11 +15,11 @@ enum
 
 //U: 윗 면, D: 아랫 면, F: 앞 면, B: 뒷 면, L: 왼쪽 면, R: 오른쪽 면
 //흰색은 w, 노란색은 y, 빨간색은 r, 오렌지색은 o, 초록색은 g, 파란색은 b.
-char cube[6][9][9];
-
-void RotateFaceCw(int dir)
+char cube[6][3][3];
+int testCase;
+void RotateFaceCw(char face)
 {
-	if (dir == U)
+	if (face == 'U')
 	{
 		char temp[3];
 		for (int i = 0; i < 3; i++)
@@ -35,6 +35,30 @@ void RotateFaceCw(int dir)
 			cube[R][0][i] = temp[i];
 		}
 	}
+	else if (face == 'D')
+	{
+
+	}
+	else if (face == 'F')
+	{
+
+	}
+	else if (face == 'B')
+	{
+
+	}
+	else if (face == 'L')
+	{
+
+	}
+	else if (face == 'R')
+	{
+
+	}
+}
+void RotateFaceCcw(char face)
+{
+
 }
 
 
@@ -54,6 +78,31 @@ int main()
 		}
 	}
 
-	RotateFaceCw(U);
+	cin >> testCase;
+	while (testCase > 0)
+	{
+		testCase--;
+
+		int tryCnt;
+		cin >> tryCnt;
+
+		for (int i = 0; i < tryCnt; i++)
+		{
+			string line;
+			cin >> line;
+			if (line[1] == '+')
+			{
+				RotateFaceCw(line[0]);
+			}
+			else
+			{
+				RotateFaceCcw(line[0]);
+			}
+				
+
+
+		}
+
+	}
 	return 0;
 }
