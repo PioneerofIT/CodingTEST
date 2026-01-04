@@ -1,108 +1,125 @@
+ï»¿
 #include <iostream>
-#include <vector>
+#include<string>
 using namespace std;
-enum
-{
-	U = 0,
-	D,
-	F,
-	B,
-	L,
-	R,
-	FACE_MAX
 
-};
-
-//U: À­ ¸é, D: ¾Æ·§ ¸é, F: ¾Õ ¸é, B: µÞ ¸é, L: ¿ÞÂÊ ¸é, R: ¿À¸¥ÂÊ ¸é
-//Èò»öÀº w, ³ë¶õ»öÀº y, »¡°£»öÀº r, ¿À·»Áö»öÀº o, ÃÊ·Ï»öÀº g, ÆÄ¶õ»öÀº b.
+enum { U = 0, D, F, B, L, R };
 char cube[6][3][3];
-int testCase;
-void RotateFaceCw(char face)
-{
-	if (face == 'U')
-	{
-		char temp[3];
-		for (int i = 0; i < 3; i++)
-		{
-			temp[i] = cube[F][0][i];
 
-		}
-		for (int i = 0; i < 3; i++)
-		{
-			cube[F][0][i] = cube[L][0][i];
-			cube[L][0][i] = cube[B][0][2 - i];
-			cube[B][0][2-i] = cube[R][0][i];
-			cube[R][0][i] = temp[i];
-		}
-	}
-	else if (face == 'D')
-	{
-
-	}
-	else if (face == 'F')
-	{
-
-	}
-	else if (face == 'B')
-	{
-
-	}
-	else if (face == 'L')
-	{
-
-	}
-	else if (face == 'R')
-	{
-
-	}
-}
-void RotateFaceCcw(char face)
-{
-
+void rotateSelfCW(int f) {
+    char t[3][3];
+    for (int r = 0; r < 3; r++)
+        for (int c = 0; c < 3; c++)
+            t[c][2 - r] = cube[f][r][c];
+    memcpy(cube[f], t, sizeof(t));
 }
 
+void rotateCW(char face) {
+    if (face == 'U') {
+        // F0 -> R0 -> B0 -> L0 (BëŠ” ë’¤ì§‘íž˜)
+        char tmp[3];
+        for (int i = 0; i < 3; i++) tmp[i] = cube[F][0][i];
 
+        for (int i = 0; i < 3; i++) cube[F][0][i] = cube[L][0][i];
+        for (int i = 0; i < 3; i++) cube[L][0][i] = cube[B][0][2 - i];
+        for (int i = 0; i < 3; i++) cube[B][0][2 - i] = cube[R][0][i];
+        for (int i = 0; i < 3; i++) cube[R][0][i] = tmp[i];
 
-int main()
-{
-	string color = "wyrogb";
+        rotateSelfCW(U);
+    }
+    else if (face == 'D') {
+        // F2 -> L2 -> B2 -> R2 (BëŠ” ë’¤ì§‘íž˜)
+        char tmp[3];
+        for (int i = 0; i < 3; i++) tmp[i] = cube[F][2][i];
 
-	for (int i = 0; i < FACE_MAX; i++)
-	{
-		for (int row = 0; row < 3; row++)
-		{
-			for (int col = 0; col < 3; col++)
-			{
-				cube[i][row][col] = color[i];
-			}
-		}
-	}
+        for (int i = 0; i < 3; i++) cube[F][2][i] = cube[R][2][i];
+        for (int i = 0; i < 3; i++) cube[R][2][i] = cube[B][2][2 - i];
+        for (int i = 0; i < 3; i++) cube[B][2][2 - i] = cube[L][2][i];
+        for (int i = 0; i < 3; i++) cube[L][2][i] = tmp[i];
 
-	cin >> testCase;
-	while (testCase > 0)
-	{
-		testCase--;
+        rotateSelfCW(D);
+    }
+    else if (face == 'F') {
+        // U2 -> R col0 -> D0 -> L col2  (ì—¬ê¸° reverse ìœ„ì¹˜ê°€ í•µì‹¬)
+        char tmp[3];
+        for (int i = 0; i < 3; i++) tmp[i] = cube[U][2][i];
 
-		int tryCnt;
-		cin >> tryCnt;
+        for (int i = 0; i < 3; i++) cube[U][2][i] = cube[L][2 - i][2];
+        for (int i = 0; i < 3; i++) cube[L][i][2] = cube[D][0][i];
+        for (int i = 0; i < 3; i++) cube[D][0][i] = cube[R][2 - i][0];
+        for (int i = 0; i < 3; i++) cube[R][i][0] = tmp[i];
 
-		for (int i = 0; i < tryCnt; i++)
-		{
-			string line;
-			cin >> line;
-			if (line[1] == '+')
-			{
-				RotateFaceCw(line[0]);
-			}
-			else
-			{
-				RotateFaceCcw(line[0]);
-			}
-				
+        rotateSelfCW(F);
+    }
+    else if (face == 'B') {
+        // U0 -> L col0 -> D2 -> R col2  (reverse ìœ„ì¹˜ í•µì‹¬)
+        char tmp[3];
+        for (int i = 0; i < 3; i++) tmp[i] = cube[U][0][i];
 
+        for (int i = 0; i < 3; i++) cube[U][0][i] = cube[R][i][2];
+        for (int i = 0; i < 3; i++) cube[R][i][2] = cube[D][2][2 - i];
+        for (int i = 0; i < 3; i++) cube[D][2][i] = cube[L][i][0];
+        for (int i = 0; i < 3; i++) cube[L][i][0] = tmp[2 - i];
 
-		}
+        rotateSelfCW(B);
+    }
+    else if (face == 'L') {
+        // U col0 -> F col0 -> D col0 -> B col2 (Bìª½ reverse)
+        char tmp[3];
+        for (int i = 0; i < 3; i++) tmp[i] = cube[U][i][0];
 
-	}
-	return 0;
+        for (int i = 0; i < 3; i++) cube[U][i][0] = cube[B][2 - i][2];
+        for (int i = 0; i < 3; i++) cube[B][2 - i][2] = cube[D][i][0];
+        for (int i = 0; i < 3; i++) cube[D][i][0] = cube[F][i][0];
+        for (int i = 0; i < 3; i++) cube[F][i][0] = tmp[i];
+
+        rotateSelfCW(L);
+    }
+    else if (face == 'R') {
+        // U col2 -> B col0 -> D col2 -> F col2 (Bìª½ reverse)
+        char tmp[3];
+        for (int i = 0; i < 3; i++) tmp[i] = cube[U][i][2];
+
+        for (int i = 0; i < 3; i++) cube[U][i][2] = cube[F][i][2];
+        for (int i = 0; i < 3; i++) cube[F][i][2] = cube[D][i][2];
+        for (int i = 0; i < 3; i++) cube[D][i][2] = cube[B][2 - i][0];
+        for (int i = 0; i < 3; i++) cube[B][2 - i][0] = tmp[i];
+
+        rotateSelfCW(R);
+    }
+}
+
+void rotateCCW(char face) {
+    // ë°˜ì‹œê³„ = ì‹œê³„ 3ë²ˆ
+    for (int i = 0; i < 3; i++) rotateCW(face);
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+    while (T--) {
+        string color = "wyrogb";
+        for (int f = 0; f < 6; f++)
+            for (int r = 0; r < 3; r++)
+                for (int c = 0; c < 3; c++)
+                    cube[f][r][c] = color[f];
+
+        int n;
+        cin >> n;
+        while (n--) {
+            string cmd;
+            cin >> cmd;
+            if (cmd[1] == '+') rotateCW(cmd[0]);
+            else rotateCCW(cmd[0]);
+        }
+
+        for (int r = 0; r < 3; r++) {
+            for (int c = 0; c < 3; c++) cout << cube[U][r][c];
+            cout << '\n';
+        }
+    }
+    return 0;
 }

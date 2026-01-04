@@ -117,5 +117,16 @@
     <ClCompile Include="5373_큐빙.cpp">
       <Filter>소스 파일\Samsung</Filter>
     </ClCompile>
+    <ClCompile Include="16234_인구이동.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
+    <ClCompile Include="16235_아기 상어.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="16235_아기 상어.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
