@@ -129,5 +129,11 @@
     <ClCompile Include="17144_미세먼지안녕.cpp">
       <Filter>소스 파일\Samsung</Filter>
     </ClCompile>
+    <ClCompile Include="17143_낚시왕.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
+    <ClCompile Include="17140_이차원 배열과 연산.cpp">
+      <Filter>소스 파일\Samsung</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
