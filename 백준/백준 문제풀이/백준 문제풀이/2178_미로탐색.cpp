@@ -1,5 +1,9 @@
 #include <iostream>
+#include <cstring>
+#include <vector>
+#include <algorithm>
 #include <queue>
+#include <climits>
 using namespace std;
 
 int arrMap[101][101];
