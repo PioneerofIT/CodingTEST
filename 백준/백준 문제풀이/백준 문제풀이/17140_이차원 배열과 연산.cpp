@@ -17,7 +17,7 @@ struct Node
 		this->index = index;
 		this->count = count;
 	}
-
+	
 	//¿Ã∞‘ «ŸΩ… !
 	bool operator<(const Node& arg)
 	{
