@@ -11,6 +11,7 @@ int dr[4] = { 0, -1, 0, 1 };
 int dc[4] = { 1, 0, -1, 0 };
 int arrCircleMap[51][51]; // 1-based
 int arrRotInfo[50][3]; // x, d, k
+int sum = 0;
 
 struct Node
 {
@@ -195,7 +196,17 @@ int main()
 		DeleteCircle();
 	}
 
-	
+	for (int i = 1; i <= N; i++)
+	{
+		for (int j = 1; j <= M; j++)
+		{
+			if (arrCircleMap[i][j] != -1)
+			{
+				sum += arrCircleMap[i][j];
+			}
+		}
+	}
+	cout << sum;
 	
 	return 0;
 }
