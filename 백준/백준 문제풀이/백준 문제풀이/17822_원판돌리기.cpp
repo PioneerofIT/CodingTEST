@@ -12,17 +12,107 @@ int dc[4] = { 1, 0, -1, 0 };
 int arrCircleMap[51][51]; // 1-based
 int arrRotInfo[50][3]; // x, d, k
 
+struct Node
+{
+	int X;
+	int Y;
+	Node(int x, int y)
+	{
+		X = x; Y = y;
+	}
+};
 void DeleteCircle()
 {
-	queue<int> Q;
+	queue<Node> Q;
+	
+	int arrTempCircleMap[51][51]; // 1-based
+	int visited[51][51];
+	bool IsDelete = false;
+	memset(visited, false, sizeof(visited));
+	memcpy(arrTempCircleMap, arrCircleMap, sizeof(arrTempCircleMap));
+	
 	
 	for (int i = 1; i <= N; i++)
 	{
 		for (int j = 1; j <= M; j++) 
 		{
 			// BFS 돌리면 될 듯?
+			Q.push(Node(i, j));
+			visited[i][j] = true;
+
+			while (!Q.empty())
+			{
+				Node nowNode = Q.front(); Q.pop();
+
+				for (int dir = 0; dir < 4; dir++)
+				{
+					int nx = nowNode.X + dr[dir];
+					int ny = nowNode.Y + dc[dir];
+
+					if (nx < 1 || nx > N || ny < 1 || ny > M) continue;
+					if (visited[nx][ny]) continue;
+
+					if (arrCircleMap[nowNode.X][nowNode.Y] == arrCircleMap[nx][ny])
+					{
+						arrTempCircleMap[nowNode.X][nowNode.Y] = -1;
+						arrTempCircleMap[nx][ny] = -1;
+
+						Q.push(Node(nx, ny));
+						visited[nx][ny] = true;
+
+						IsDelete = true;
+					}
+
+
+				}
+			}
+
+
+
+
 		}
 	}
+
+	if (!IsDelete)
+	{
+		int sumNum = 0;
+		int cnt = 0;
+		for (int i = 1; i <= N; i++)
+		{
+			for (int j = 1; j <= M; j++)
+			{
+				if (arrTempCircleMap[i][j] != -1)
+				{
+					sumNum += (arrTempCircleMap[i][j]);
+					cnt++;
+				}
+			}
+		}
+
+		int avgNum = (sumNum / cnt);
+		for (int i = 1; i <= N; i++)
+		{
+			for (int j = 1; j <= M; j++)
+			{
+				if (arrTempCircleMap[i][j] != -1)
+				{
+					if (arrTempCircleMap[i][j] < avgNum)
+					{
+						arrTempCircleMap[i][j] += 1;
+					}
+					else
+					{
+						arrTempCircleMap[i][j] -= 1;
+					}
+				}
+			}
+		}
+
+
+	}
+	memcpy(arrCircleMap, arrTempCircleMap, sizeof(arrCircleMap));
+
+
 }
 
 void DecideCirCle(int x, int d, int k)
@@ -53,7 +143,7 @@ void DecideCirCle(int x, int d, int k)
 
 	}
 
-	DeleteCircle();
+	
 }
 
 void RotateCircle(int circleIdx, int dir)
@@ -100,8 +190,9 @@ int main()
 	for (int i = 0; i < T; i++)
 	{
 		int x, d, k;
-
-	
+		cin >> x >> d >> k;
+		DecideCirCle(x, d, k);
+		DeleteCircle();
 	}
 
 	
