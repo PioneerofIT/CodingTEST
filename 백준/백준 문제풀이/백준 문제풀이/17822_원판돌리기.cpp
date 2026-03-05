@@ -10,7 +10,6 @@ int N, M, T;
 int dr[4] = { 0, -1, 0, 1 };
 int dc[4] = { 1, 0, -1, 0 };
 int arrCircleMap[51][51]; // 1-based
-int arrRotInfo[50][3]; // x, d, k
 int sum = 0;
 
 struct Node
@@ -37,6 +36,9 @@ void DeleteCircle()
 	{
 		for (int j = 1; j <= M; j++) 
 		{
+			if (visited[i][j]) continue;
+			if (arrCircleMap[i][j] == -1) continue;      // FIX: 삭제값 스킵
+			
 			// BFS 돌리면 될 듯?
 			Q.push(Node(i, j));
 			visited[i][j] = true;
@@ -50,8 +52,14 @@ void DeleteCircle()
 					int nx = nowNode.X + dr[dir];
 					int ny = nowNode.Y + dc[dir];
 
-					if (nx < 1 || nx > N || ny < 1 || ny > M) continue;
+					if (nx < 1 || nx > N) continue;   // 상하만 체크
+
+					// 좌우는 원형 연결
+					if (ny == 0) ny = M;
+					else if (ny == M + 1) ny = 1;
+
 					if (visited[nx][ny]) continue;
+					if (arrCircleMap[nx][ny] == -1) continue;
 
 					if (arrCircleMap[nowNode.X][nowNode.Y] == arrCircleMap[nx][ny])
 					{
@@ -76,44 +84,65 @@ void DeleteCircle()
 
 	if (!IsDelete)
 	{
-		int sumNum = 0;
-		int cnt = 0;
+		double sumNum = 0;
+		double cnt = 0;
 		for (int i = 1; i <= N; i++)
 		{
 			for (int j = 1; j <= M; j++)
 			{
-				if (arrTempCircleMap[i][j] != -1)
-				{
-					sumNum += (arrTempCircleMap[i][j]);
-					cnt++;
-				}
+				if (arrTempCircleMap[i][j] == -1) continue;
+
+				sumNum += (arrTempCircleMap[i][j]);
+				cnt++;
+
 			}
 		}
 
-		int avgNum = (sumNum / cnt);
-		for (int i = 1; i <= N; i++)
+		if (cnt > 0)
 		{
-			for (int j = 1; j <= M; j++)
+			double avgNum = sumNum / cnt;
+			for (int i = 1; i <= N; i++)
 			{
-				if (arrTempCircleMap[i][j] != -1)
+				for (int j = 1; j <= M; j++)
 				{
-					if (arrTempCircleMap[i][j] < avgNum)
+					if (arrTempCircleMap[i][j] != -1)
 					{
-						arrTempCircleMap[i][j] += 1;
-					}
-					else
-					{
-						arrTempCircleMap[i][j] -= 1;
+						if (arrTempCircleMap[i][j] > avgNum) arrTempCircleMap[i][j]--;
+						else if (arrTempCircleMap[i][j] < avgNum) arrTempCircleMap[i][j]++;
 					}
 				}
 			}
 		}
-
 
 	}
 	memcpy(arrCircleMap, arrTempCircleMap, sizeof(arrCircleMap));
 
 
+}
+
+void RotateCircle(int circleIdx, int dir)
+{
+	if (dir == 0) // 시계 방향
+	{
+		int temp = arrCircleMap[circleIdx][M];
+
+		for (int i = M; i > 1; i--)
+		{
+			arrCircleMap[circleIdx][i] = arrCircleMap[circleIdx][i - 1];
+		}
+		arrCircleMap[circleIdx][1] = temp;
+	}
+	else if (dir == 1) // 반시계 방향
+	{
+		int temp = arrCircleMap[circleIdx][1];
+
+		for (int i = 1; i < M; i++)
+		{
+			arrCircleMap[circleIdx][i] = arrCircleMap[circleIdx][i + 1];
+		}
+		arrCircleMap[circleIdx][M] = temp;
+
+	}
 }
 
 void DecideCirCle(int x, int d, int k)
@@ -137,7 +166,7 @@ void DecideCirCle(int x, int d, int k)
 	{
 		int nCircleIdx = vecTargetCircle[i];
 
-		for (int j = 0; j < k; k++)
+		for (int z = 0; z < k; z++)
 		{
 			RotateCircle(nCircleIdx, d);
 		}
@@ -145,31 +174,6 @@ void DecideCirCle(int x, int d, int k)
 	}
 
 	
-}
-
-void RotateCircle(int circleIdx, int dir)
-{
-	if (dir == 0) // 시계 방향
-	{
-		int temp = arrCircleMap[circleIdx][M];
-
-		for (int i = M; i > 0; i--)
-		{
-			arrCircleMap[circleIdx][i] = arrCircleMap[circleIdx][i - 1];
-		}
-		arrCircleMap[circleIdx][0] = temp;
-	}
-	else if (dir == 1) // 반시계 방향
-	{
-		int temp = arrCircleMap[circleIdx][0];
-
-		for (int i = 0; i < M; i++)
-		{
-			arrCircleMap[circleIdx][i] = arrCircleMap[circleIdx][i + 1];
-		}
-		arrCircleMap[circleIdx][M] = temp;
-
-	}
 }
 
 int main()
@@ -192,6 +196,8 @@ int main()
 	{
 		int x, d, k;
 		cin >> x >> d >> k;
+
+
 		DecideCirCle(x, d, k);
 		DeleteCircle();
 	}
