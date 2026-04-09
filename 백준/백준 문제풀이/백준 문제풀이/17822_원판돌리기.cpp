@@ -57,7 +57,8 @@ void DeleteCircle()
 					// 좌우는 원형 연결
 					if (ny == 0) ny = M;
 					else if (ny == M + 1) ny = 1;
-
+					/*BFS는 결국 “이웃 노드로 이동”하는 알고리즘 일반 격자랑은 다르게 원판
+					격자인데 이웃노드를 못가면 안된다.*/
 					if (visited[nx][ny]) continue;
 					if (arrCircleMap[nx][ny] == -1) continue;
 
